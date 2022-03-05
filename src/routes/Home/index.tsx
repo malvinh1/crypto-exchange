@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import BinanceLogo from '../../assets/binance.svg';
 import ScrollingTags from '../../components/ScrollingTags';
 import Searchbar from '../../components/Searchbar';
 import Table from '../../components/Table';
+import useFetchCryptoList from '../../hooks/useFetchCryptoList';
 
 const Home = () => {
+  const { data } = useFetchCryptoList();
+
   const [searchValue, setSearchValue] = useState('');
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <div className="p-4">
