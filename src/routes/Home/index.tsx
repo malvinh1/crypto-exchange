@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
 import BinanceLogo from '../../assets/binance.svg';
+import ScrollingTags from '../../components/ScrollingTags';
 import Searchbar from '../../components/Searchbar';
-import ScrollingTags from './components/ScrollingTags';
+import Table from '../../components/Table';
 
 const Home = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -13,6 +14,7 @@ const Home = () => {
       <h1 className="my-8 text-3xl font-bold">Crypto Market Overview</h1>
       <ScrollingTags />
       <Searchbar value={searchValue} onChangeValue={setSearchValue} />
+      <Table />
     </div>
   );
 };
