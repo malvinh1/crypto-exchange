@@ -3,15 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"yarn build:watch\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:css": "postcss src/index.css -o src/style/tailwind.css",
+    "build:watch": "postcss src/index.css -o src/style/tailwind.css --watch"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^13.5.0",
+    "postcss-cli": "^9.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.2",
@@ -26,11 +29,15 @@
     "@types/react-dom": "^17.0.13",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
+    "autoprefixer": "^9.8.6",
+    "concurrently": "^7.0.0",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "prettier": "^2.2.1"
+    "postcss": "^8.4.7",
+    "prettier": "^2.2.1",
+    "tailwindcss": "^3.0.23"
   },
   "browserslist": {
     "production": [
