@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 import Pagination from '../../components/Pagination';
-import ScrollingTags from '../../components/ScrollingTags';
 import Searchbar from '../../components/Searchbar';
 import Table from '../../components/Table';
 import useFetchCryptoList, {
   CryptoCurrencyAsset,
 } from '../../hooks/useFetchCryptoList';
+import Banner from './components/Banner';
 
 const Home = () => {
   const { data } = useFetchCryptoList();
@@ -29,8 +29,7 @@ const Home = () => {
 
   return (
     <div className="p-4">
-      <h1 className="my-8 text-2xl font-bold">Crypto Market Overview</h1>
-      <ScrollingTags />
+      <Banner />
       <Searchbar value={searchValue} onChangeValue={handleSetSearchValue} />
       <Table data={filteredData(data)} page={page} />
       <Pagination

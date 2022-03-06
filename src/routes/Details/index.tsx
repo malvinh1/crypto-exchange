@@ -119,8 +119,9 @@ const Details = () => {
           }}
         />
         <div className="mt-2 flex">
-          {TIMEFRAMES.map((item) => (
+          {TIMEFRAMES.map((item, index) => (
             <div
+              key={index}
               className="mr-2 flex flex-1 cursor-pointer items-center justify-center rounded-md bg-primary p-3 text-center font-bold"
               onClick={() => handleSetTimeframe(item.key)}
             >

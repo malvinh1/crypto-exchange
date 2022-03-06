@@ -60,7 +60,10 @@ const Table = ({ data, page }: Props) => {
           <div
             className="flex flex-grow justify-between text-right md:w-[100px] md:justify-end"
             style={{
-              color: item.price_change_percentage_24h > 0 ? 'green' : 'red',
+              color:
+                item.price_change_percentage_24h > 0
+                  ? 'rgb(14, 203, 129)'
+                  : 'red',
             }}
           >
             <div className="block text-gray-700 md:hidden">24h Change</div>
