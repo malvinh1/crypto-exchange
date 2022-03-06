@@ -3,9 +3,10 @@ import { CryptoCurrencyAsset } from '../hooks/useFetchCryptoList';
 
 type Props = {
   data?: CryptoCurrencyAsset[];
+  page: number;
 };
 
-const Table = ({ data }: Props) => {
+const Table = ({ data, page }: Props) => {
   return (
     <div>
       <div className="hidden flex-row bg-gray-100 py-2 pl-3 text-xs text-gray-700 md:flex">
@@ -22,7 +23,7 @@ const Table = ({ data }: Props) => {
         </div>
         <div className="flex w-[180px] flex-grow overflow-hidden" />
       </div>
-      {data?.map((item) => (
+      {data?.slice((page - 1) * 20, (page - 1) * 20 + 20).map((item) => (
         <div
           className="text-md flex flex-col border-b-2 py-4 pl-3 md:flex-row md:items-center"
           key={item.id}
@@ -68,7 +69,7 @@ const Table = ({ data }: Props) => {
               })}
             </div>
           </div>
-          <div className="flex w-[180px] flex-grow text-right text-primary md:justify-center">
+          <div className="flex w-[180px] flex-grow cursor-pointer text-right text-primary md:justify-center">
             Detail
           </div>
         </div>
