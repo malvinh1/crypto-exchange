@@ -22,7 +22,10 @@ const Table = ({ data }: Props) => {
         <div className="flex w-[180px] flex-grow overflow-hidden" />
       </div>
       {data?.map((item) => (
-        <div className="text-md flex items-center py-2 pl-3" key={item.id}>
+        <div
+          className="text-md flex items-center border-b-2 py-4 pl-3"
+          key={item.id}
+        >
           <div className="flex w-[220px] flex-grow flex-row flex-wrap items-center">
             <img src={item.image} width={24} />
             <h3 className="px-2 font-semibold">{item.symbol.toUpperCase()}</h3>
