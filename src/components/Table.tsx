@@ -29,7 +29,7 @@ const Table = ({ data, page }: Props) => {
           key={item.id}
         >
           <div className="flex w-[220px] flex-grow flex-row flex-wrap items-center">
-            <img src={item.image} width={24} />
+            <img src={item.image} className="h-[24px] w-[24px]" />
             <h3 className="px-2 font-semibold">{item.symbol.toUpperCase()}</h3>
             <h4 className="text-xs text-gray-500">{item.name}</h4>
           </div>
