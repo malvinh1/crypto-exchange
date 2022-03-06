@@ -13,6 +13,8 @@ import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { useParams } from 'react-router-dom';
 
+import { numberToCurrency } from '../../helpers/numberFormatter';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -84,10 +86,16 @@ const Details = () => {
           Rank: {data?.market_cap_rank || 'N.A'}
         </h2>
         <h2 className="my-2 self-center text-2xl font-bold xl:self-start">
-          Current Price: {data?.market_data.current_price.usd || '0'}
+          Current Price:{' '}
+          {numberToCurrency({
+            num: data?.market_data.current_price.usd || 0,
+          })}
         </h2>
         <h2 className="my-2 self-center text-2xl font-bold xl:self-start">
-          Market Cap: {data?.market_data.market_cap.usd || '0'}
+          Market Cap:{' '}
+          {numberToCurrency({
+            num: data?.market_data.market_cap.usd || 0,
+          })}
         </h2>
       </div>
       <div className="w-full p-4">
