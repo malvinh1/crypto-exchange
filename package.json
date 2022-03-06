@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"yarn build:watch\"",
-    "build": "react-scripts build",
+    "build": "yarn build:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:css": "postcss src/index.css -o src/style/tailwind.css",
