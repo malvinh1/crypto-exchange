@@ -24,7 +24,7 @@ export type CryptoDetail = {
 };
 
 const useFetchCryptoDetail = (id?: string) => {
-  const result = useQuery<CryptoDetail>('crypto', async () => {
+  const result = useQuery<CryptoDetail>(`crypto-${id}`, async () => {
     const response = await fetch(
       `${process.env.REACT_APP_API_COINGECKO}coins/${id}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`
     );

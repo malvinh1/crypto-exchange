@@ -1,3 +1,4 @@
+import sanitizeHtml from '@wpe-tkpd/xss/dist/sanitizeHtml/sanitizeHtmlBrowser';
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -8,7 +9,6 @@ import {
   Title,
   Tooltip,
 } from 'chart.js';
-import HtmlReactParser from 'html-react-parser';
 import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { useParams } from 'react-router-dom';
@@ -59,7 +59,7 @@ const Details = () => {
 
   return (
     <div className="flex h-screen flex-col xl:flex-row">
-      <div className="border:none flex w-full flex-col border-gray-900 p-4 xl:w-2/5 xl:border-r-2">
+      <div className="border:none flex w-full flex-col border-gray-900 p-4 xl:w-3/5 xl:border-r-2">
         <img
           className="h-[200px] w-[200px] self-center"
           alt="crypto-logo"
@@ -70,9 +70,13 @@ const Details = () => {
           data.description.en.split('. ').map((item, index) => {
             if (index < 3) {
               return (
-                <div key={index} className="my-2 text-justify font-mono">
-                  {HtmlReactParser(item) + '.'}
-                </div>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: sanitizeHtml(item),
+                  }}
+                  key={index}
+                  className="my-2 text-justify font-mono"
+                />
               );
             }
           })}
@@ -117,7 +121,7 @@ const Details = () => {
         <div className="mt-2 flex">
           {TIMEFRAMES.map((item) => (
             <div
-              className="mr-2 flex flex-1 items-center justify-center rounded-md bg-primary p-3 text-center font-bold"
+              className="mr-2 flex flex-1 cursor-pointer items-center justify-center rounded-md bg-primary p-3 text-center font-bold"
               onClick={() => handleSetTimeframe(item.key)}
             >
               {item.label}

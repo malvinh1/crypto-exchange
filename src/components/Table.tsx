@@ -36,7 +36,10 @@ const Table = ({ data, page }: Props) => {
           className="text-md flex flex-col border-b-2 py-4 pl-3 md:flex-row md:items-center"
           key={item.id}
         >
-          <div className="flex w-[220px] flex-grow flex-row flex-wrap items-center">
+          <div
+            className="flex w-[220px] flex-grow cursor-pointer flex-row flex-wrap items-center"
+            onClick={() => handleGoToDetailPage(item.id)}
+          >
             <img
               alt="coin-logo"
               src={item.image}
