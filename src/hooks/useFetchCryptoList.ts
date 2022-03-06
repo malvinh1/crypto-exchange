@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 
-export type CrypoCurrencyAsset = {
+export type CryptoCurrencyAsset = {
   id: string;
   symbol: string;
   name: string;
@@ -30,7 +30,7 @@ export type CrypoCurrencyAsset = {
 };
 
 const useFetchCryptoList = () => {
-  const result = useQuery<CrypoCurrencyAsset[]>(
+  const result = useQuery<CryptoCurrencyAsset[]>(
     'cryptoList',
     async () => {
       const response = await fetch(

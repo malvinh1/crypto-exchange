@@ -1,7 +1,7 @@
-import { CrypoCurrencyAsset } from '../hooks/useFetchCryptoList';
+import { CryptoCurrencyAsset } from '../hooks/useFetchCryptoList';
 
 type Props = {
-  data?: CrypoCurrencyAsset[];
+  data?: CryptoCurrencyAsset[];
 };
 
 const Table = ({ data }: Props) => {
