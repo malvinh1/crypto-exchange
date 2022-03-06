@@ -21,7 +21,7 @@ const Home = () => {
       <h1 className="my-8 text-3xl font-bold">Crypto Market Overview</h1>
       <ScrollingTags />
       <Searchbar value={searchValue} onChangeValue={setSearchValue} />
-      <Table />
+      <Table data={data} />
     </div>
   );
 };
