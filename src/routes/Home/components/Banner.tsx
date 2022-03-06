@@ -1,18 +1,28 @@
 import 'react-alice-carousel/lib/alice-carousel.css';
 
 import AliceCarousel from 'react-alice-carousel';
+import { useNavigate } from 'react-router-dom';
 
 import { numberToCurrency } from '../../../helpers/numberFormatter';
 import useFetchTrendingCryptoList from '../../../hooks/useFetchTrendingCrypto';
 
 const Banner = () => {
+  const navigate = useNavigate();
+
   const { data: trending } = useFetchTrendingCryptoList();
+
+  const handleGoToDetailPage = (id: string) => {
+    navigate(`/coins/${id}`);
+  };
 
   const items = trending?.map((coin) => {
     const profit = coin?.price_change_percentage_24h >= 0;
 
     return (
-      <div className="flex cursor-pointer flex-col items-center uppercase">
+      <div
+        className="flex cursor-pointer flex-col items-center uppercase"
+        onClick={() => handleGoToDetailPage(coin.id)}
+      >
         <img
           className="h-[80px]"
           src={coin?.image}
