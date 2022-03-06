@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { numberToCurrency } from '../helpers/numberFormatter';
 import { CryptoCurrencyAsset } from '../hooks/useFetchCryptoList';
 
@@ -7,6 +9,12 @@ type Props = {
 };
 
 const Table = ({ data, page }: Props) => {
+  const navigate = useNavigate();
+
+  const handleGoToDetailPage = (id: string) => {
+    navigate(`/coins/${id}`);
+  };
+
   return (
     <div>
       <div className="hidden flex-row bg-gray-100 py-2 pl-3 text-xs text-gray-700 md:flex">
@@ -73,7 +81,10 @@ const Table = ({ data, page }: Props) => {
               })}
             </div>
           </div>
-          <div className="flex w-[180px] flex-grow cursor-pointer text-right text-primary md:justify-center">
+          <div
+            className="flex w-[180px] flex-grow cursor-pointer text-right text-primary md:justify-center"
+            onClick={() => handleGoToDetailPage(item.id)}
+          >
             Detail
           </div>
         </div>

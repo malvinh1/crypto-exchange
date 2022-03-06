@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import BinanceLogo from '../../assets/binance.svg';
 import Pagination from '../../components/Pagination';
 import ScrollingTags from '../../components/ScrollingTags';
 import Searchbar from '../../components/Searchbar';
@@ -23,18 +22,16 @@ const Home = () => {
     );
   };
 
+  const handleSetSearchValue = (value: string) => {
+    setSearchValue(value);
+    setPage(1);
+  };
+
   return (
     <div className="p-4">
-      <img src={BinanceLogo} width={120} alt="logo" />
       <h1 className="my-8 text-2xl font-bold">Crypto Market Overview</h1>
       <ScrollingTags />
-      <Searchbar
-        value={searchValue}
-        onChangeValue={(value) => {
-          setSearchValue(value);
-          setPage(1);
-        }}
-      />
+      <Searchbar value={searchValue} onChangeValue={handleSetSearchValue} />
       <Table data={filteredData(data)} page={page} />
       <Pagination
         page={page}
