@@ -1,3 +1,4 @@
+import { numberToCurrency } from '../helpers/numberFormatter';
 import { CryptoCurrencyAsset } from '../hooks/useFetchCryptoList';
 
 type Props = {
@@ -31,15 +32,29 @@ const Table = ({ data }: Props) => {
             <h3 className="px-2 font-semibold">{item.symbol.toUpperCase()}</h3>
             <h4 className="text-xs text-gray-500">{item.name}</h4>
           </div>
-          <div className="flex w-[100px] flex-grow">{item.current_price}</div>
-          <div className="flex w-[100px] flex-grow justify-end text-right">
-            {item.price_change_percentage_24h}
+          <div className="flex w-[100px] flex-grow">
+            {numberToCurrency({
+              num: item.current_price,
+              maximumFractionDigits: 5,
+            })}
+          </div>
+          <div
+            className="flex w-[100px] flex-grow justify-end text-right font-semibold"
+            style={{
+              color: item.price_change_percentage_24h > 0 ? 'green' : 'red',
+            }}
+          >
+            {item.price_change_percentage_24h.toFixed(2) + '%'}
           </div>
           <div className="flex w-[130px] flex-grow justify-end text-right">
-            {item.total_volume}
+            {numberToCurrency({
+              num: item.total_volume,
+            })}
           </div>
           <div className="flex w-[130px] flex-grow justify-end text-right">
-            {item.market_cap}
+            {numberToCurrency({
+              num: item.market_cap,
+            })}
           </div>
           <div className="flex w-[180px] flex-grow justify-center text-right text-primary">
             Trade

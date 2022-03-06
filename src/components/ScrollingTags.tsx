@@ -24,10 +24,9 @@ const ScrollingTags = () => {
   return (
     <div className="relative box-border flex items-center justify-between overflow-auto whitespace-nowrap pb-4 hover:overflow-scroll">
       {MOCK_TAGS.map((value, index) => (
-        <>
+        <div key={index}>
           {activeIndex === index ? (
             <div
-              key={index}
               className="mr-2 cursor-pointer rounded-lg bg-gray-400 py-1 px-2"
               onClick={() => setActiveIndex(index)}
             >
@@ -35,14 +34,13 @@ const ScrollingTags = () => {
             </div>
           ) : (
             <div
-              key={index}
               className="mr-2 cursor-pointer py-1 px-2 text-gray-500"
               onClick={() => setActiveIndex(index)}
             >
               {value}
             </div>
           )}
-        </>
+        </div>
       ))}
     </div>
   );
