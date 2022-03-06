@@ -26,22 +26,46 @@ ChartJS.register(
 import useFetchCryptoDetail from '../../hooks/useFetchCryptoDetail';
 import useFetchCryptoHistory from '../../hooks/useFetchCryptoHistory';
 
+const TIMEFRAMES = [
+  {
+    label: '24 Hours',
+    key: '1',
+  },
+  {
+    label: '30 Days',
+    key: '30',
+  },
+  {
+    label: '3 Months',
+    key: '90',
+  },
+  {
+    label: '1 Year',
+    key: '365',
+  },
+];
+
 const Details = () => {
   const params = useParams();
-  const { data } = useFetchCryptoDetail(params.id);
-  const { data: historicData } = useFetchCryptoHistory(params.id, '30');
 
-  const [days, _] = useState('30');
+  const [timeframe, setTimeframe] = useState('1');
+
+  const { data } = useFetchCryptoDetail(params.id);
+  const { data: historicData } = useFetchCryptoHistory(params.id, timeframe);
+
+  const handleSetTimeframe = (value: string) => {
+    setTimeframe(value);
+  };
 
   return (
     <div className="flex h-screen flex-col xl:flex-row">
-      <div className="border:none flex w-full flex-col items-center border-gray-900 p-4 xl:w-2/5 xl:border-r-2">
+      <div className="border:none flex w-full flex-col border-gray-900 p-4 xl:w-2/5 xl:border-r-2">
         <img
-          className="h-[200px] w-[200px]"
+          className="h-[200px] w-[200px] self-center"
           alt="crypto-logo"
           src={data?.image.large}
         />
-        <h1 className="my-2 text-4xl font-bold">{data?.name}</h1>
+        <h1 className="my-2 self-center text-4xl font-bold">{data?.name}</h1>
         {data?.description.en &&
           data.description.en.split('. ').map((item, index) => {
             if (index < 3) {
@@ -52,13 +76,13 @@ const Details = () => {
               );
             }
           })}
-        <h2 className="my-2 text-2xl font-bold">
+        <h2 className="my-2 self-center text-2xl font-bold xl:self-start">
           Rank: {data?.market_cap_rank || 'N.A'}
         </h2>
-        <h2 className="my-2 text-2xl font-bold">
+        <h2 className="my-2 self-center text-2xl font-bold xl:self-start">
           Current Price: {data?.market_data.current_price.usd || '0'}
         </h2>
-        <h2 className="my-2 text-2xl font-bold">
+        <h2 className="my-2 self-center text-2xl font-bold xl:self-start">
           Market Cap: {data?.market_data.market_cap.usd || '0'}
         </h2>
       </div>
@@ -71,13 +95,13 @@ const Details = () => {
                 date.getHours() > 12
                   ? `${date.getHours() - 12}:${date.getMinutes()} PM`
                   : `${date.getHours()}:${date.getMinutes()} AM`;
-              return days === '1' ? time : date.toLocaleDateString();
+              return timeframe === '1' ? time : date.toLocaleDateString();
             }),
 
             datasets: [
               {
                 data: historicData?.prices.map((coin) => coin[1]),
-                label: `Price ( Past ${days} Days ) in usd`,
+                label: `Price ( Past ${timeframe} Days ) in usd`,
                 borderColor: '#EEBC1D',
               },
             ],
@@ -91,18 +115,14 @@ const Details = () => {
           }}
         />
         <div className="mt-2 flex">
-          <div className="mr-2 flex flex-1 items-center justify-center rounded-md bg-primary p-3 text-center font-bold">
-            24 Hours
-          </div>
-          <div className="mr-2 flex flex-1 items-center justify-center rounded-md bg-primary p-3 text-center font-bold">
-            30 Days
-          </div>
-          <div className="mr-2 flex flex-1 items-center justify-center rounded-md bg-primary p-3 text-center font-bold">
-            3 Months
-          </div>
-          <div className="mr-2 flex flex-1 items-center justify-center rounded-md bg-primary p-3 text-center font-bold">
-            1 Year
-          </div>
+          {TIMEFRAMES.map((item) => (
+            <div
+              className="mr-2 flex flex-1 items-center justify-center rounded-md bg-primary p-3 text-center font-bold"
+              onClick={() => handleSetTimeframe(item.key)}
+            >
+              {item.label}
+            </div>
+          ))}
         </div>
       </div>
     </div>

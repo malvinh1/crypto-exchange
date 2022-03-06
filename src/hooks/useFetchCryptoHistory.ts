@@ -6,10 +6,7 @@ export type CryptoHistoricalDetail = {
   total_volumes: Array<number[]>;
 };
 
-const useFetchCryptoHistory = (
-  id?: string,
-  days?: '1' | '30' | '90' | '365'
-) => {
+const useFetchCryptoHistory = (id?: string, days?: string) => {
   const result = useQuery<CryptoHistoricalDetail>(
     'crypto-history',
     async () => {
