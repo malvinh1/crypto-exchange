@@ -39,7 +39,7 @@ const useFetchCryptoList = () => {
       return response.json();
     },
     {
-      refetchInterval: 3000,
+      refetchInterval: 2000,
     }
   );
 
