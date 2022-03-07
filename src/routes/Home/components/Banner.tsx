@@ -28,7 +28,6 @@ const Banner = () => {
           src={coin?.image}
           alt={coin.name}
           height={80}
-          width={80}
         />
         <span>
           {coin?.symbol}
