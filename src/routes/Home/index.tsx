@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import React from 'react';
+import { Suspense, useState } from 'react';
 
 import Pagination from '../../components/Pagination';
-import Searchbar from '../../components/Searchbar';
-import Table from '../../components/Table';
+import {
+  BannerSkeleton,
+  SearchbarSekelton,
+  TableSkeleton,
+} from '../../components/Skeleton';
 import useFetchCryptoList, {
   CryptoCurrencyAsset,
 } from '../../hooks/useFetchCryptoList';
-import Banner from './components/Banner';
+
+const Table = React.lazy(() => import('../../components/Table'));
+const Banner = React.lazy(() => import('./components/Banner'));
+const Searchbar = React.lazy(() => import('../../components/Searchbar'));
 
 const Home = () => {
   const { data } = useFetchCryptoList();
@@ -28,10 +35,16 @@ const Home = () => {
   };
 
   return (
-    <div className="p-4">
-      <Banner />
-      <Searchbar value={searchValue} onChangeValue={handleSetSearchValue} />
-      <Table data={filteredData(data)} page={page} />
+    <div className="h-full p-4">
+      <Suspense fallback={<BannerSkeleton />}>
+        <Banner />
+      </Suspense>
+      <Suspense fallback={<SearchbarSekelton />}>
+        <Searchbar value={searchValue} onChangeValue={handleSetSearchValue} />
+      </Suspense>
+      <Suspense fallback={<TableSkeleton />}>
+        <Table data={filteredData(data)} page={page} />
+      </Suspense>
       <Pagination
         page={page}
         totalData={filteredData(data)?.length || 0}
