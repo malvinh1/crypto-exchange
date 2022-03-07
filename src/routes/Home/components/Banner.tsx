@@ -24,10 +24,11 @@ const Banner = () => {
         onClick={() => handleGoToDetailPage(coin.id)}
       >
         <img
-          className="h-[80px]"
+          className="mb-[10px] h-[80px]"
           src={coin?.image}
           alt={coin.name}
-          style={{ marginBottom: 10 }}
+          height={80}
+          width={80}
         />
         <span>
           {coin?.symbol}

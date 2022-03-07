@@ -10,7 +10,7 @@ const Header = () => {
       className="cursor-pointer border-b-2 bg-gray-600 p-4"
       onClick={() => navigate('/')}
     >
-      <img src={BinanceLogo} width={120} alt="logo" />
+      <img src={BinanceLogo} width={120} height={24} alt="logo" />
     </div>
   );
 };
