@@ -34,4 +34,4 @@ const useFetchCryptoDetail = (id?: string) => {
   return result;
 };
 
-export default useFetchCryptoDetail;
+export { useFetchCryptoDetail };

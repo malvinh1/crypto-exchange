@@ -15,6 +15,7 @@ const NotFound = () => {
       <h1 className="text-6xl font-bold">Route not found</h1>
       <img className="mt-5 h-80 w-96" alt="vitalik" src={VitalikPhoto} />
       <div
+        data-testid="back-to-home"
         className="mt-5 flex cursor-pointer items-center rounded-md bg-primary p-4"
         onClick={handleBackToHome}
       >

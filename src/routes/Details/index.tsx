@@ -25,7 +25,7 @@ ChartJS.register(
   Legend
 );
 
-import useFetchCryptoDetail from '../../hooks/useFetchCryptoDetail';
+import { useFetchCryptoDetail } from '../../hooks/useFetchCryptoDetail';
 import useFetchCryptoHistory from '../../hooks/useFetchCryptoHistory';
 
 const TIMEFRAMES = [
