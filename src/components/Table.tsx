@@ -43,8 +43,7 @@ const Table = ({ data, page }: Props) => {
             <img
               alt="coin-logo"
               src={item.image}
-              className="h-[24px] w-[24px]"
-              width={24}
+              className="h-[24px]"
               height={24}
             />
             <h3 className="px-2 font-semibold">{item.symbol.toUpperCase()}</h3>
